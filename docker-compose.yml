@@ -1,7 +1,6 @@
 version: '2'
 services:
  struts2:
-   #image: vulhub/struts2:2.5.25
-   build: .
+   image: $ECR_REPOSITORY:$CONTAINER_NAME
    ports:
     - "8081:8080"
