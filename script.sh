@@ -8,7 +8,7 @@ done
 # sudo usermod -aG docker jenkins
 curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o ./docker-compose
 # chmod +x /usr/local/bin/docker-compose
-
+ls -la
 cd /home/ubuntu/
 echo "ECR_REPOSITORY=$ECR_REPOSITORY 
 CONTAINER_NAME=$CONTAINER_NAME" >> .env

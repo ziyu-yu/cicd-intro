@@ -37,7 +37,7 @@ pipeline {
                 withAWS(credentials: 'aws-cred', region: 'us-east-1') {
                 sh '''
                     aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY:$CONTAINER_NAME
-                    chmod +x ./script.sh
+                    
                     ECR_REPOSITORY=$ECR_REPOSITORY CONTAINER_NAME=$CONTAINER_NAME ./script.sh
                 '''
                 }
