@@ -46,7 +46,7 @@ pipeline {
 
                     docker image  prune -f
                     chmod +x docker-compose
-                    ./docker-compose --env-file=.env pull && docker-compose --env-file=.env up -d
+                    ./docker-compose --env-file=.env pull && ./docker-compose --env-file=.env up -d
                 '''
                 }
             }
