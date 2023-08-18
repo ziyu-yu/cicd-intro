@@ -20,7 +20,7 @@ pipeline {
                }
             }
         }
-        stage('Image Deploy') {
+        stage('Artifactory Deploy') {
             steps {
                 withAWS(credentials: 'aws-cred', region: 'us-east-1') {
                   sh ''' 
@@ -32,15 +32,12 @@ pipeline {
                }
             }
         }
-        stage('Deploy Server') {
+        stage('Server Deploy') {
             steps {
                 withAWS(credentials: 'aws-cred', region: 'us-east-1') {
                 sh '''
                     aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY:$CONTAINER_NAME
-                    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o ./docker-compose
-                    
-                    ls -la
-                    
+                    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o ./docker-compose                    
                     echo "ECR_REPOSITORY=$ECR_REPOSITORY 
                     CONTAINER_NAME=$CONTAINER_NAME" >> .env
 
