@@ -37,8 +37,17 @@ pipeline {
                 withAWS(credentials: 'aws-cred', region: 'us-east-1') {
                 sh '''
                     aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $ECR_REPOSITORY:$CONTAINER_NAME
-                    // chmod +x ./script.sh
-                    bash ECR_REPOSITORY=$ECR_REPOSITORY CONTAINER_NAME=$CONTAINER_NAME ./script.sh
+                    curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o ./docker-compose
+                    
+                    ls -la
+                    
+                    echo "ECR_REPOSITORY=$ECR_REPOSITORY 
+                    CONTAINER_NAME=$CONTAINER_NAME" >> .env
+
+                    docker image  prune -f
+                    ./docker-compose --env-file=.env pull && docker-compose --env-file=.env up -d
+                    
+                    sh ECR_REPOSITORY=$ECR_REPOSITORY CONTAINER_NAME=$CONTAINER_NAME ./script.sh
                 '''
                 }
             }
