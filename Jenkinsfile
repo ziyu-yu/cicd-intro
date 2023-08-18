@@ -45,9 +45,10 @@ pipeline {
                     CONTAINER_NAME=$CONTAINER_NAME" >> .env
 
                     docker image  prune -f
+                    chmod +x docker-compose
                     ./docker-compose --env-file=.env pull && docker-compose --env-file=.env up -d
                     
-                    sh ECR_REPOSITORY=$ECR_REPOSITORY CONTAINER_NAME=$CONTAINER_NAME ./script.sh
+                    // sh ECR_REPOSITORY=$ECR_REPOSITORY CONTAINER_NAME=$CONTAINER_NAME ./script.sh
                 '''
                 }
             }
