@@ -4,8 +4,8 @@ until [[ -f /var/lib/cloud/instance/boot-finished ]]; do
 done
 # sudo systemctl start docker
 # sudo systemctl enable docker
-# sudo groupadd docker
-# sudo usermod -aG docker jenkins
+sudo groupadd docker
+sudo usermod -aG docker jenkins
 curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
