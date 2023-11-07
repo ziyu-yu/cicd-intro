@@ -6,3 +6,4 @@ export AWS_SECRET_ACCESS_KEY=$key_secret
 export AWS_REGION=$REGION
 echo $key_id
 aws sts get-caller-identity
+export EKS_CODEBUILD_ROLE_ARN=`aws sts get-caller-identity | jq -r '.Arn'`
