@@ -27,7 +27,7 @@ phases:
     commands:
       - cd app
       - docker logout
-      - echo "${DOCKERHUB_PASS}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
+      - echo "${DOCKERHUB_PASS}" | sudo docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
       - docker pull maven:3-jdk-11
       - export AWS_ACCOUNT_ID=`aws sts get-caller-identity --query "Account" --output text`
       - docker build . -t $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION --build-arg AWS_REGION=$AWS_REGION -f Dockerfile
