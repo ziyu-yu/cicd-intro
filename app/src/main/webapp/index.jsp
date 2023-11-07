@@ -14,7 +14,7 @@ div {text-align: center;}
 </head>
 <body>
 
-<h1>Sample CI/CD Application</h1>
+<h1>Sample CI/CD Application update 1</h1>
 <p>This Application Deployed through CI/CD</p>
 <div>Sample exploitable application.
 <p style="text-align:center;"><img src="./img.png" alt="Logo"></p>
