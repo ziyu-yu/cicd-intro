@@ -16,9 +16,11 @@ phases:
 
   pre_build: # Check helm version and Add kubeconfig to access to EKS cluster and check readiness of the cluster
     commands:
+      - chmod +x ./aws-cicd/scripts/setup.sh
+      - ./aws-cicd/scripts/setup.sh
       - "helm version"
       - "mkdir ~/.kube/"
-      - "aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn $EKS_CODEBUILD_ROLE_ARN"
+      - aws eks update-kubeconfig --region $REGION --name $EKS_CLUSTER_NAME
       - "chmod 0600 ~/.kube/config"
       - "aws sts get-caller-identity"
   
