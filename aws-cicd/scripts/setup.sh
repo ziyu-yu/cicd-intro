@@ -10,7 +10,6 @@ export EKS_CODEBUILD_ROLE_ARN=`aws sts get-caller-identity | jq -r '.Arn'`
 echo $EKS_CODEBUILD_ROLE_ARN
 helm version
 mkdir ~/.kube/
-aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn=$EKS_CODEBUILD_ROLE_ARN
-chmod 0600 ~/.kube/config
-aws sts get-caller-identity
+aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
 kubectl version --output=json
+echo "Setup Done !!"
