@@ -21,15 +21,12 @@ phases:
     commands:
       - chmod +x ./aws-cicd/scripts/setup.sh
       - ./aws-cicd/scripts/setup.sh
-      - "helm version"
-      - "mkdir ~/.kube/"
-      - "aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER_NAME --role-arn=$EKS_CODEBUILD_ROLE_ARN"
-      - "chmod 0600 ~/.kube/config"
-      - "aws sts get-caller-identity"
+
   
   build: # Deploy app via Helm
     commands:
-      - "helm upgrade -i $EKS_CODEBUILD_APP_NAME-$ENV helm_charts/$EKS_CODEBUILD_APP_NAME -f helm_charts/$EKS_CODEBUILD_APP_NAME/values.$ENV.yaml --set image.repository=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME --set image.tag=$CODEBUILD_RESOLVED_SOURCE_VERSION"
+      - chmod +x ./aws-cicd/scripts/deploy.sh
+      - ./aws-cicd/scripts/deploy.sh
   
   post_build: # Display the endpoint of the application
     commands:
