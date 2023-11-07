@@ -2,6 +2,8 @@ version: 0.2
 env:
   secrets-manager:
     AWS_KEY_ID: AppDeploy
+    DOCKERHUB_PASS: AppDeploy
+    DOCKERHUB_USERNAME: AppDeploy
 phases:
   install: # Install AWS cli, maven
     runtime-versions:
@@ -24,6 +26,7 @@ phases:
   build: # Build Docker image,tag it with the commit sha, push the docker image to ECR
     commands:
       - cd app
+      - docker login --username $DOCKERHUB_USERNAME --password $DOCKERHUB_PASS
       - docker pull maven:3-jdk-11
       - docker build . -t $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION --build-arg AWS_REGION=$AWS_REGION -f Dockerfile
       - docker tag $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSION
