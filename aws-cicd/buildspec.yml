@@ -26,6 +26,7 @@ phases:
   build: # Build Docker image,tag it with the commit sha, push the docker image to ECR
     commands:
       - cd app
+      - docker logout
       - echo "${DOCKERHUB_PASS}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
       - docker pull maven:3-jdk-11
       - export AWS_ACCOUNT_ID=`aws sts get-caller-identity --query "Account" --output text`
