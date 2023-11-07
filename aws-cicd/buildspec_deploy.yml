@@ -30,7 +30,5 @@ phases:
   
   post_build: # Display the endpoint of the application
     commands:
-      - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
-      - sleep 60
-      - JAVA_APP_ENDPOINT=`kubectl get svc $EKS_CODEBUILD_APP_NAME-$ENV -o jsonpath="{.status.loadBalancer.ingress[*].hostname}"`
-      - echo -e "\nThe Java application can be accessed nw via http://$JAVA_APP_ENDPOINT/hello"
+      - chmod +x ./aws-cicd/scripts/check.sh
+      - ./aws-cicd/scripts/check.sh
