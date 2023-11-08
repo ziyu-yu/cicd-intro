@@ -1,9 +1,9 @@
 version: 0.2
 env:
   secrets-manager:
-    AWS_KEY_ID: AppDeploy2
-    DOCKERHUB_PASS: AppDeploy2
-    DOCKERHUB_USERNAME: AppDeploy2
+    AWS_KEY_ID: AppDeploy
+    DOCKERHUB_PASS: AppDeploy
+    DOCKERHUB_USERNAME: AppDeploy
 phases:
   install: # Install AWS cli, maven
     runtime-versions:
