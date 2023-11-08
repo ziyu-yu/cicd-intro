@@ -9,4 +9,4 @@ export AWS_ACCOUNT_ID=`aws sts get-caller-identity --query "Account" --output te
 bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
 sleep 60
 JAVA_APP_ENDPOINT=`kubectl get svc $EKS_CODEBUILD_APP_NAME-$ENV -o jsonpath="{.status.loadBalancer.ingress[*].hostname}"`
-echo -e "\nThe Java application can be accessed nw via http://$JAVA_APP_ENDPOINT:8080"
+echo -e "\nThe Java application can be accessed nw via http://$JAVA_APP_ENDPOINT"
