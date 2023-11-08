@@ -12,5 +12,6 @@ echo $EKS_CODEBUILD_ROLE_ARN
 helm version
 mkdir ~/.kube/
 aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
+chmod 0600 ~/.kube/config
 kubectl version --output=json
 echo "Setup Done !!"
