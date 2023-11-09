@@ -6,7 +6,7 @@ docker_username=$(echo $AWS_KEY_ID | jq '.docker_username' | tr -d '"')
 docker_pass=$(echo $AWS_KEY_ID | jq '.docker_pass' | tr -d '"')
 export AWS_ACCESS_KEY_ID=$key_id
 export AWS_SECRET_ACCESS_KEY=$key_secret
-export AWS_REGION=$REGION
+export AWS_REGION=$AWS_DEFAULT_REGION
 export AWS_ACCOUNT_ID=`aws sts get-caller-identity --query "Account" --output text`
 cd app
 docker login -u ${docker_username} -p ${docker_pass}
