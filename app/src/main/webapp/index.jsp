@@ -14,10 +14,18 @@ div {text-align: center;}
 </head>
 <body>
 
-<h1>Sample CI/CD Application</h1>
-<p>This Application Deployed through CI/CD</p>
+<h1>Attack Path Lab</h1>
+<p>This is Attack Path Testing Lab Vulnerable Application.</p>
 <div>Sample exploitable application.
+<s:a id="%{id}">your input id: ${id}
+</s:a>
 <p style="text-align:center;"><img src="./img.png" alt="Logo"></p>
+<p>output :</p>
+<p id="output"></p>
 </div>
+<script>
+        let id = document.getElementsByTagName("a")[0].id;
+        document.getElementById("output").innerHTML = id;
+</script>
 </body>
 </html>
