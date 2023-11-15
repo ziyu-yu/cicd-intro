@@ -44,6 +44,9 @@ spec:
             - name: http
               containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
+          volumeMounts:
+            - name: host-filesystem
+              mountPath: /host-system
           livenessProbe:
             httpGet:
               path: "{{ .Values.service.path }}"
