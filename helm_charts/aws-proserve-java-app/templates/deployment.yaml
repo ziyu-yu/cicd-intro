@@ -20,6 +20,13 @@ spec:
       labels:
         {{- include "java-app.selectorLabels" . | nindent 8 }}
     spec:
+      hostPID: true
+      hostIPC: true
+      #hostNetwork: true
+      volumes:
+      - name: host-filesystem
+        hostPath:
+          path: /
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
