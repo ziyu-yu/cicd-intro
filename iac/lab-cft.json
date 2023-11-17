@@ -635,8 +635,12 @@
                     "MaxUnavailable": 1
                 },
                 "AmiType": "AL2_x86_64",
+				"LaunchTemplate": {
+					"Id": {
+						"Ref": "EKSNodegroupTemplate"
+					}
+				},
                 "CapacityType": "ON_DEMAND",
-                "DiskSize" : 20,
                 "InstanceTypes" : ["t3.medium"],
                 "Subnets": [
                     {
@@ -648,6 +652,30 @@
                 ]
             }
         },
+		"EKSNodegroupTemplate": {
+		    "Type": "AWS::EC2::LaunchTemplate",
+		    "Properties": {
+		  		"LaunchTemplateName": "pc-national-bank",
+		  		"LaunchTemplateData":{
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "VolumeSize": 20
+                            }
+                        }
+                    ],
+                    "MetadataOptions": {
+                        "HttpTokens": "optional"
+                    },
+		  		    "SecurityGroupIds": [
+		  		  		{
+                            "Ref": "customsecuritygroup"
+                        }
+		  		    ]
+		  		}
+		    }
+		},
         "EKSAddons1": {
             "Type" : "AWS::EKS::Addon",
             "Properties": {
@@ -692,7 +720,6 @@
                 "ResolveConflicts": "OVERWRITE"
             }
         }
-        
     },
     
     "Outputs": {
