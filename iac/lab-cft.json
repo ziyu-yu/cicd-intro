@@ -297,8 +297,20 @@
                     },
                     {
                         "IpProtocol": "tcp",
+                        "FromPort": 8080,
+                        "ToPort": 8080,
+                        "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol": "tcp",
                         "FromPort": 22,
                         "ToPort": 22,
+                        "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 10250,
+                        "ToPort": 10250,
                         "CidrIp": "0.0.0.0/0"
                     }
                 ],
@@ -346,7 +358,7 @@
             "Type": "AWS::S3::Bucket",
             "Properties": {
                 "BucketName": {
-                    "Fn::Sub": "my-random-bucket-${AWS::AccountId}-${AWS::Region}-${AWS::StackName}"
+                    "Fn::Sub": "pc-national-bank-${AWS::AccountId}-${AWS::Region}-${AWS::StackName}"
                 },
               "AccessControl": "Private"
             }
