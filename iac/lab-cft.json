@@ -308,24 +308,21 @@
                         "CidrIp": "0.0.0.0/0"
                     },
                     {
-                        "IpProtocol": "tcp",
-                        "FromPort": 10250,
-                        "ToPort": 10250,
+                        "IpProtocol": "-1",
                         "CidrIp": "0.0.0.0/0"
                     }
                 ],
                 "SecurityGroupEgress": [
-                    {
-                        "IpProtocol": "-1",
-                        "FromPort": 0,
-                        "ToPort": 0,
-                        "CidrIp": "0.0.0.0/0"
-                    },
+                    
                     {
                         "IpProtocol": "-1",
                         "FromPort": 0,
                         "ToPort": 0,
                         "CidrIpv6": "::/0"
+                    },
+                    {
+                        "IpProtocol": "-1",
+                        "CidrIp": "0.0.0.0/0"
                     }
                 ]
             }
@@ -679,12 +676,7 @@
                     ],
                     "MetadataOptions": {
                         "HttpTokens": "optional"
-                    },
-		  		    "SecurityGroupIds": [
-		  		  		{
-                            "Ref": "customsecuritygroup"
-                        }
-		  		    ]
+                    }
 		  		}
 		    }
 		},
